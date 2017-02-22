@@ -1,0 +1,4 @@
+﻿  kernel.cpp
+  AssemblyInfo.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\documents\visual studio 2015\Projects\lab1itoi\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\documents\visual studio 2015\Projects\lab1itoi\Debug\lab1itoi.pdb (Partial PDB)

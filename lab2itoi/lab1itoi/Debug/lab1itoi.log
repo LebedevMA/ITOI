@@ -1,0 +1,10 @@
+﻿  lab1itoi.cpp
+  pyramid.cpp
+pyramid.cpp(21): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+pyramid.cpp(33): warning C4018: <: несоответствие типов со знаком и без знака
+pyramid.cpp(35): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+pyramid.cpp(36): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+  AssemblyInfo.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\Visual Studio 2015\Projects\lab2itoi\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\Visual Studio 2015\Projects\lab2itoi\Debug\lab1itoi.pdb (Partial PDB)
