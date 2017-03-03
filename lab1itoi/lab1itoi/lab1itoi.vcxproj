@@ -142,8 +142,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image.h" />
-    <ClInclude Include="kernel.h" />
+    <ClInclude Include="..\..\share\image.h" />
+    <ClInclude Include="..\..\share\kernel.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
@@ -151,9 +151,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\share\image.cpp" />
+    <ClCompile Include="..\..\share\kernel.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="kernel.cpp" />
     <ClCompile Include="lab1itoi.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

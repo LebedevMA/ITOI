@@ -142,10 +142,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="image.h" />
-    <ClInclude Include="image_lite.h" />
-    <ClInclude Include="kernel.h" />
-    <ClInclude Include="pyramid.h" />
+    <ClInclude Include="..\..\share\image.h" />
+    <ClInclude Include="..\..\share\image_lite.h" />
+    <ClInclude Include="..\..\share\kernel.h" />
+    <ClInclude Include="..\..\share\pyramid.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
@@ -153,12 +153,12 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\share\image.cpp" />
+    <ClCompile Include="..\..\share\image_lite.cpp" />
+    <ClCompile Include="..\..\share\kernel.cpp" />
+    <ClCompile Include="..\..\share\pyramid.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="image_lite.cpp" />
-    <ClCompile Include="kernel.cpp" />
     <ClCompile Include="lab1itoi.cpp" />
-    <ClCompile Include="pyramid.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

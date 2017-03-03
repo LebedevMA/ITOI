@@ -1,7 +1,7 @@
 // lab1itoi.cpp: главный файл проекта.
 
 #include "stdafx.h"
-#include "image.h"
+#include "../../share/image.h"
 
 using namespace System;
 

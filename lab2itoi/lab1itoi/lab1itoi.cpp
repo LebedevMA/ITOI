@@ -1,19 +1,19 @@
 // lab1itoi.cpp: главный файл проекта.
 
 #include "stdafx.h"
-#include "image.h"
-#include "pyramid.h"
+#include "../../share/image.h"
+#include "../../share/pyramid.h"
 
 using namespace System;
 
 int main(array<System::String ^> ^args)
 {
 	System::Console::SetWindowSize(System::Console::LargestWindowWidth, System::Console::LargestWindowHeight);
-	std::unique_ptr<image> img = std::unique_ptr<image>(new image());
+	std::unique_ptr<image> img = std::make_unique<image>();
 	img->load(L"input.bmp");
 	img->setKE(image::MIRROR);
 
-	std::unique_ptr<pyramid> p = std::unique_ptr<pyramid>(new pyramid());
+	std::unique_ptr<pyramid> p = std::make_unique<pyramid>();
 
 	p->Gen(img,4);
 
@@ -23,7 +23,7 @@ int main(array<System::String ^> ^args)
 	while (true) {
 		Console::Write("\r                                                                                                     \r");
 		p->images[i]->draw();
-		Console::Write("oktava: "+(p->inform[i]->oktava)+", sigma: "+(p->inform[i]->sigma));
+		Console::Write("octave: "+(p->inform[i]->octave)+", sigma: "+(p->inform[i]->sigma));
 		ConsoleKeyInfo cki = Console::ReadKey();
 		if (cki.Key == ConsoleKey::RightArrow) {
 			i++;

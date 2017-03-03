@@ -24,17 +24,17 @@
     <ClInclude Include="resource.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\..\share\image.h">
+      <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="kernel.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\..\share\image_lite.h">
+      <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="pyramid.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\..\share\kernel.h">
+      <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="image_lite.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\..\share\pyramid.h">
+      <Filter>Файлы исходного кода</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,16 +52,16 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="image.cpp">
+    <ClCompile Include="..\..\share\image.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="kernel.cpp">
+    <ClCompile Include="..\..\share\image_lite.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="pyramid.cpp">
+    <ClCompile Include="..\..\share\kernel.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="image_lite.cpp">
+    <ClCompile Include="..\..\share\pyramid.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
