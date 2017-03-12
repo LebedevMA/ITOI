@@ -22,17 +22,6 @@ image::image(const int width, const int height)
 	}
 }
 
-image::image(const image *a)
-{
-	width = a->width;
-	height = a->height;
-	V = new double[width*height];
-	for (int i = 0;i < width*height;i++) {
-		V[i] = a->V[i];
-	}
-	KE = a->KE;
-}
-
 image::image(const image &a)
 {
 	width = a.width;
@@ -42,6 +31,18 @@ image::image(const image &a)
 		V[i] = a.V[i];
 	}
 	KE = a.KE;
+}
+
+image::image(image &&a)
+{
+	width = a.width;
+	a.width = 0;
+	height = a.height;
+	a.height = 0;
+	V = a.V;
+	a.V = nullptr;
+	KE = a.KE;
+	a.KE = BLACK;
 }
 
 void image::operator=(const image &a)
@@ -97,13 +98,25 @@ void image::draw() {
 			bmp->SetPixel(x, y, System::Drawing::Color::FromArgb((int)255*c, (int)255*c, (int)255*c));
 		}
 	}
-	int x = System::Console::WindowLeft;
-	int y = System::Console::WindowTop;
 
 	System::IntPtr handle = System::Diagnostics::Process::GetCurrentProcess()->MainWindowHandle;
 
 	System::Drawing::Graphics ^g = System::Drawing::Graphics::FromHwnd(handle);
 	g->Clear(System::Drawing::Color::Black);
+	g->DrawImage(bmp, 0, 0, width, height);
+}
+
+void image::draw(System::Drawing::Graphics ^g) {
+	System::Drawing::Bitmap ^bmp = gcnew System::Drawing::Bitmap(width, height);
+	for (int y = 0;y < height;y++) {
+		for (int x = 0;x < width;x++) {
+			double c = V[x + y*width];
+			if (c < 0) c = 0;
+			if (c > 1) c = 1;
+			bmp->SetPixel(x, y, System::Drawing::Color::FromArgb((int)255 * c, (int)255 * c, (int)255 * c));
+		}
+	}
+
 	g->DrawImage(bmp, 0, 0, width, height);
 }
 
@@ -224,7 +237,7 @@ void image::setPixel(const int x, const int y, const double c) {
 	V[x + y*width] = c;
 }
 
-std::unique_ptr<image> image::convolution(const kernel &k) {
+std::unique_ptr<image> image::convolution(kernel &k) {
 	std::unique_ptr<image> out = std::make_unique<image>(*this);
 
 	for (int x = 0; x < width; x++)
@@ -233,16 +246,16 @@ std::unique_ptr<image> image::convolution(const kernel &k) {
 		{
 			double Sum = 0;
 
-			for (int i = 0; i < k.width; i++)
+			for (int i = 0; i < k.getWidth(); i++)
 			{
-				for (int j = 0; j < k.height; j++)
+				for (int j = 0; j < k.getHeight(); j++)
 				{
-					int pixelPosX = x + (i - (k.width / 2));
-					int pixelPosY = y + (j - (k.height / 2));
+					int pixelPosX = x + (i - (k.getWidth() / 2));
+					int pixelPosY = y + (j - (k.getHeight() / 2));
 
 					double c = getPixel(pixelPosX, pixelPosY);
 
-					double kernelVal = k.K[i + j*k.width];
+					double kernelVal = k.getElement(i + j*k.getWidth());
 
 					Sum += c * kernelVal;
 				}
@@ -255,7 +268,9 @@ std::unique_ptr<image> image::convolution(const kernel &k) {
 	return out;
 }
 
-std::unique_ptr<image> image::Sobel(const kernel Ky, const kernel Kx) {
+std::unique_ptr<image> image::Sobel() {
+	kernel Ky = kernel::SobelKy();
+	kernel Kx = kernel::SobelKx();
 	std::unique_ptr<image> Gy = this->convolution(Ky);
 	std::unique_ptr<image> Gx = this->convolution(Kx);
 	std::unique_ptr<image> out = std::make_unique<image>(*this);
@@ -290,4 +305,5 @@ std::unique_ptr<image> image::small2() {
 
 image::~image()
 {
+	delete V;
 }

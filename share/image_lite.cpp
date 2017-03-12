@@ -11,11 +11,11 @@ image_lite::image_lite()
 
 image_lite::image_lite(const std::unique_ptr<image> &a)
 {
-	width = a->width;
-	height = a->height;
+	width = a->getWidth();
+	height = a->getHeight();
 	V = new unsigned char[width*height];
 	for (int i = 0;i < width*height;i++) {
-		V[i] = (unsigned char)(255 * a->V[i]);
+		V[i] = (unsigned char)(255 * a->getElement(i));
 	}
 }
 

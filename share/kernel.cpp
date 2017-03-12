@@ -45,7 +45,7 @@ kernel kernel::rotate() {
 }
 
 
-kernel kernel::operator+(const kernel k1) {
+kernel kernel::operator+(const kernel &k1) {
 	kernel out(k1.width, k1.height);
 	for (int i = 0;i < k1.height*k1.width;i++) {
 		out.K[i] = k1.K[i] + K[i];

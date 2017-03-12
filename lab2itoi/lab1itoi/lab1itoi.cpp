@@ -15,7 +15,7 @@ int main(array<System::String ^> ^args)
 
 	std::unique_ptr<pyramid> p = std::make_unique<pyramid>();
 
-	p->Gen(img,4);
+	p->Gen(img,5,1.6);
 
 	int count = p->images.size();
 
