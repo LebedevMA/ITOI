@@ -6,9 +6,9 @@ pyramid::pyramid()
 {
 }
 
-void pyramid::Gen(const std::unique_ptr<image> &img, const int scales, const double sigma) {
+void pyramid::Gen(const image &img, const int scales, const double sigma) {
 	kernel k = kernel::Gauss(sqrt(sigma*sigma - 0.25));
-	std::unique_ptr<image> p = img->convolution(k);
+	std::unique_ptr<image> p = img.convolution(k);
 	p = p->convolution(k.rotate());
 	images.clear();
 	double sigmaS = sigma;
@@ -24,8 +24,8 @@ void pyramid::Gen(const std::unique_ptr<image> &img, const int scales, const dou
 			kernel k1 = kernel::Gauss(sqrt(sigmaS*sigmaS - 1));
 			p1 = p->convolution(k1);
 			p1 = p1->convolution(k1.rotate());
-			images.push_back(new image_lite(p1));
-			inform.push_back(new info(octave, sigmaS, sigmaR));
+			images.push_back(image_lite(p1));
+			inform.push_back(info(octave, sigmaS, sigmaR));
 		}
 		p = p1->small2();
 		octave++;
@@ -33,13 +33,13 @@ void pyramid::Gen(const std::unique_ptr<image> &img, const int scales, const dou
 }
 
 int pyramid::L(int x, int y, double sigma) {
-	int width0 = images[0]->getWidth();
-	int height0 = images[0]->getHeight();
+	int width0 = images[0].getWidth();
+	int height0 = images[0].getHeight();
 	for (int i = 0;i < images.size()-1;i++) {
-		if (sigma >= inform[i]->sigmaR && sigma <= inform[i + 1]->sigmaR) {
-			int x1 = x * images[i]->getWidth() * (1.0 / width0);
-			int y1 = y * images[i]->getHeight() * (1.0 / height0);
-			return images[i]->getElement(x1 + y1*(images[i]->getWidth()));
+		if (sigma >= inform[i].sigmaR && sigma <= inform[i + 1].sigmaR) {
+			int x1 = x * images[i].getWidth() * (1.0 / width0);
+			int y1 = y * images[i].getHeight() * (1.0 / height0);
+			return images[i].getElement(x1 + y1*(images[i].getWidth()));
 		}
 	}
 	return 0;
@@ -47,8 +47,4 @@ int pyramid::L(int x, int y, double sigma) {
 
 pyramid::~pyramid()
 {
-	while (images.size() > 0) {
-		delete images.back();
-		images.pop_back();
-	}
 }

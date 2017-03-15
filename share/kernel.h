@@ -11,12 +11,12 @@ public:
 	kernel(const int width, const int height, double* K);
 	kernel(const kernel &K);
 
-	int getWidth() { return width; }
+	int getWidth() const{ return width; }
 	void setWidth(int width) { this->width = width; }
-	int getHeight() { return height; }
+	int getHeight() const{ return height; }
 	void setHeight(int height) { this->height = height; }
 
-	double getElement(int index) { return K[index]; }
+	double getElement(int index) const{ return K[index]; }
 	void setElement(int index, double value) { K[index] = value; }
 
 	kernel rotate();

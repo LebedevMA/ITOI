@@ -41,4 +41,5 @@ void image_lite::draw() {
 
 image_lite::~image_lite()
 {
+	//delete V;
 }

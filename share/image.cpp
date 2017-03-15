@@ -137,7 +137,7 @@ void image::setKE(const effect ke) {
 	KE = ke;
 }
 
-double image::getPixel(const int x, const int y) {
+double image::getPixel(const int x, const int y) const{
 	if (width == 0 || height == 0) return 0;
 	if (x >= 0 && x < width && y >= 0 && y < height) return V[x + y*width];
 	if (KE == BLACK) return 0;
@@ -237,7 +237,7 @@ void image::setPixel(const int x, const int y, const double c) {
 	V[x + y*width] = c;
 }
 
-std::unique_ptr<image> image::convolution(kernel &k) {
+std::unique_ptr<image> image::convolution(const kernel &k) const{
 	std::unique_ptr<image> out = std::make_unique<image>(*this);
 
 	for (int x = 0; x < width; x++)
@@ -283,6 +283,26 @@ std::unique_ptr<image> image::Sobel() {
 		out->V[i] = r;
 	}
 	return out;
+}
+
+double image::lambda() {
+	kernel Ky = kernel::SobelKy();
+	kernel Kx = kernel::SobelKx();
+	std::unique_ptr<image> Gy = this->convolution(Ky);
+	std::unique_ptr<image> Gx = this->convolution(Kx);
+	double A = 0, B = 0, C = 0;
+	for (int i = 0;i < width*height;i++) {
+		double x = Gx->V[i];
+		double y = Gy->V[i];
+		double k = V[i];
+		A += k*x*x;
+		B += k*x*y;
+		C += k*y*y;
+
+	}
+	double descr = sqrt(pow(A - C, 2) + 4 * B*B);
+	double l = min(abs((A + C - descr) / 2), abs((A + C + descr) / 2));
+	return l;
 }
 
 std::unique_ptr<image> image::small2() {

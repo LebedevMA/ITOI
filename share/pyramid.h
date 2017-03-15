@@ -17,15 +17,15 @@ public:
 		}
 	};
 private:
-	std::vector<image_lite *> images;
-	std::vector<info *> inform;
+	std::vector<image_lite> images;
+	std::vector<info> inform;
 public:
 	pyramid();
 
-	image_lite *getImage(int index) { return images[index]; }
+	image_lite &getImage(int index) { return images[index]; }
 	int getCount() { return images.size(); }
-	info *getInfo(int index) { return inform[index]; }
-	void Gen(const std::unique_ptr<image> &img, const int scales, const double sigmaS = 1);
+	info &getInfo(int index) { return inform[index]; }
+	void Gen(const image &img, const int scales, const double sigmaS = 1);
 	int L(int x, int y, double sigma);
 	~pyramid();
 };

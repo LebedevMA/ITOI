@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "interest_points.h"
-#include "CHARNUM.h"
 #include <map>
 
 
@@ -66,6 +65,8 @@ void interest_points::Moravek(image &img, int N, int r, int p) {
 	}
 	
 	std::map<double,point>::reverse_iterator it = pts.rbegin();
+	if (N > pts.size()) N = pts.size();
+
 	for (int i = 0;i < N;i++) {
 		points.push_back(it->second);
 		it++;
@@ -75,28 +76,29 @@ void interest_points::Moravek(image &img, int N, int r, int p) {
 	delete S;
 }
 
-void interest_points::Harris(image &img, int N, int r, int p) {
+
+void interest_points::Harris(image &img1, int N, int r, int p) {
+	image img = *(img1.Sobel());
 	int width = img.getWidth();
 	int height = img.getHeight();
 	double *S = new double[width*height];
 	double sum = 0;
 	double *M = new double[r*r];
+	image *M1 = new image(r, r);
 	for (int x = r;x < width - r;x++) {
 		for (int y = r;y < height - r;y++) {
 			for (int u = 0;u < r;u++) {
 				for (int v = 0;v < r;v++) {
-					M[u*r + v] = img.getPixel(x + u, y + v);
+					M1->setElement(u*r + v, img.getPixel(x + u, y + v));
 				}
 			}
-			double lmin = 0;
-			try {
-				lmin = lmbdmin(M, r);
-			}
-			catch (...) {}
+			double lmin = M1->lambda();
+
 			S[y*width + x] = lmin;
 		}
 	}
 	delete M;
+	delete M1;
 
 	std::map<double, point> pts;
 
@@ -120,27 +122,15 @@ void interest_points::Harris(image &img, int N, int r, int p) {
 	}
 
 	std::map<double, point>::reverse_iterator it = pts.rbegin();
-	for (int i = 0;i < N;i++) {
-		points.push_back(it->second);
-		it++;
-	}
-	it = pts.rbegin();
+	if (N > pts.size()) N = pts.size();
+		for (int i = 0;i < N;i++) {
+			points.push_back(it->second);
+			it++;
+		}
 
 	delete S;
 }
 
-double interest_points::lmbdmin(double *m, int n) {
-	CHARNUM::matr M(n, n);
-	CHARNUM::matr X(n, 1);
-	for (int i = 0;i < n;i++) {
-		X.v[i][0] = i+1;
-		for (int j = 0;j < n;j++) {
-			M.v[i][j] = m[i*n + j];
-		}
-	}
-	double lmbd = CHARNUM::charnumA(&M, &X, 0.0001, 0);
-	return lmbd;
-}
 
 interest_points::~interest_points()
 {

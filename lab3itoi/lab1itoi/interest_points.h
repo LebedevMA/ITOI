@@ -27,7 +27,5 @@ public:
 
 	void Moravek(image &img, int N, int r, int p);
 	void Harris(image &img, int N, int r, int p);
-
-	static double lmbdmin(double *m, int n);
 };
 

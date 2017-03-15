@@ -146,7 +146,6 @@
     <ClInclude Include="..\..\share\image_lite.h" />
     <ClInclude Include="..\..\share\kernel.h" />
     <ClInclude Include="..\..\share\pyramid.h" />
-    <ClInclude Include="CHARNUM.h" />
     <ClInclude Include="interest_points.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />

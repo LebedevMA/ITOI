@@ -40,13 +40,14 @@ public:
 	effect getKE() { return KE; }
 	void setKE(const effect ke);
 
-	double getPixel(const int x, const int y);
+	double getPixel(const int x, const int y) const;
 	void setPixel(const int x, const int y, const double c);
 
 
-	std::unique_ptr<image> convolution(kernel &k);
+	std::unique_ptr<image> convolution(const kernel &k) const;
 
 	std::unique_ptr<image> Sobel();
+	double lambda();
 
 	std::unique_ptr<image> small2();
 
