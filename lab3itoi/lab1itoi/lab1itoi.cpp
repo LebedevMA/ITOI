@@ -35,9 +35,12 @@ int main(array<System::String ^> ^args)
 	}
 	img1->Save("img1.png");
 
+
+	g->DrawImage(img1,0,0);
+
 	//Console::ReadKey();
 
-	g->Clear(System::Drawing::Color::Black);
+	//g->Clear(System::Drawing::Color::Black);
 
 	interest_points IP2;
 
@@ -54,7 +57,10 @@ int main(array<System::String ^> ^args)
 	}
 	img2->Save("img2.png");
 
-	//Console::ReadKey();
+
+	g->DrawImage(img2, img1->Width, 0);
+
+	Console::ReadKey();
 
 	img.release();
 

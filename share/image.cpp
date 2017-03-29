@@ -294,10 +294,9 @@ double image::lambda() {
 	for (int i = 0;i < width*height;i++) {
 		double x = Gx->V[i];
 		double y = Gy->V[i];
-		double k = V[i];
-		A += k*x*x;
-		B += k*x*y;
-		C += k*y*y;
+		A += x*x;
+		B += x*y;
+		C += y*y;
 
 	}
 	double descr = sqrt(pow(A - C, 2) + 4 * B*B);

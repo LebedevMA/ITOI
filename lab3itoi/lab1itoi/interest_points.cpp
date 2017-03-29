@@ -1,17 +1,18 @@
 #include "stdafx.h"
 #include "interest_points.h"
 #include <map>
+#include <memory>
+#include <algorithm>
 
 
 interest_points::interest_points()
 {
 }
 
-void interest_points::Moravek(image &img, int N, int r, int p) {
+void interest_points::Moravek(image &img, int N, int r, int p, double T) {
 	int width = img.getWidth();
 	int height = img.getHeight();
-	double *S = new double[width*height];
-	double sum = 0;
+	auto S = std::make_unique<double[]>(width*height);
 	for (int x = r;x < width -r;x++) {
 		for (int y = r;y < height - r;y++) {
 			double S1[] = {0,0,0,0,0,0,0,0};
@@ -35,18 +36,16 @@ void interest_points::Moravek(image &img, int N, int r, int p) {
 				}
 			}
 
-			S[y*width + x] = S1[0];
-			for (int i = 1;i < 8;i++) {
-				if (S1[i] < S[y*width + x]) S[y*width + x] = S1[i];
-			}
-			sum += S[y*width + x];
+			S[y*width + x] = *(std::min_element(&S1[0], &S1[7]));
 		}
 	}
 
-	std::map<double,point> pts;
+	auto pts = std::make_unique<point[]>(width*height);
+	int ptscount = 0;
 
 	for (int x = r+p;x < width-r-p;x++) {
 		for (int y = r+p;y < height-r-p;y++) {
+			if (T > 0 && S[x + y*width] < T) continue;
 			bool flag = true;
 			for (int u = -p;u < p;u++) {
 				for (int v = -p;v < p;v++) {
@@ -59,25 +58,28 @@ void interest_points::Moravek(image &img, int N, int r, int p) {
 			}
 			if (flag) {
 				point pt(x,y,S[x+y*width]);
-				pts.insert(std::pair<double,point>(pt.s, pt));
+				pts[ptscount++] = pt;
 			}
 		}
 	}
 	
-	std::map<double,point>::reverse_iterator it = pts.rbegin();
-	if (N > pts.size()) N = pts.size();
+	for (int i = 0;i < ptscount-1;i++) {
+		for (int j = i+1;j < ptscount;j++) {
+			if (pts[i].s < pts[j].s) {
+				point k = pts[i];
+				pts[i] = pts[j];
+				pts[j] = k;
+			}
+		}
+	}
 
 	for (int i = 0;i < N;i++) {
-		points.push_back(it->second);
-		it++;
+		points.push_back(pts[i]);
 	}
-	it = pts.rbegin();
-
-	delete S;
 }
 
 
-void interest_points::Harris(image &img1, int N, int r, int p) {
+void interest_points::Harris(image &img1, int N, int r, int p, double T) {
 	image img = *(img1.Sobel());
 	int width = img.getWidth();
 	int height = img.getHeight();
@@ -100,10 +102,12 @@ void interest_points::Harris(image &img1, int N, int r, int p) {
 	delete M;
 	delete M1;
 
-	std::map<double, point> pts;
+	auto pts = std::make_unique<point[]>(width*height);
+	int ptscount = 0;
 
 	for (int x = r + p;x < width - r - p;x++) {
 		for (int y = r + p;y < height - r - p;y++) {
+			if (T > 0 && S[x + y*width] < T) continue;
 			bool flag = true;
 			for (int u = -p;u < p;u++) {
 				for (int v = -p;v < p;v++) {
@@ -116,19 +120,24 @@ void interest_points::Harris(image &img1, int N, int r, int p) {
 			}
 			if (flag) {
 				point pt(x, y, S[x + y*width]);
-				pts.insert(std::pair<double, point>(pt.s, pt));
+				pts[ptscount++] = pt;
 			}
 		}
 	}
 
-	std::map<double, point>::reverse_iterator it = pts.rbegin();
-	if (N > pts.size()) N = pts.size();
-		for (int i = 0;i < N;i++) {
-			points.push_back(it->second);
-			it++;
+	for (int i = 0;i < ptscount - 1;i++) {
+		for (int j = i + 1;j < ptscount;j++) {
+			if (pts[i].s < pts[j].s) {
+				point k = pts[i];
+				pts[i] = pts[j];
+				pts[j] = k;
+			}
 		}
+	}
 
-	delete S;
+	for (int i = 0;i < N;i++) {
+		points.push_back(pts[i]);
+	}
 }
 
 
