@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "../../share/image.h"
 #include "../../share/pyramid.h"
-#include "interest_points.h"
+#include "../../share/interest_points.h"
 
 using namespace System;
 

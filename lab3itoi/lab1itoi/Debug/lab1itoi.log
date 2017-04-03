@@ -1,3 +1,6 @@
-﻿  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+﻿  interest_points.cpp
+  lab1itoi.cpp
+  Создание кода...
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab3itoi\Debug\lab1itoi.exe
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab3itoi\Debug\lab1itoi.pdb (Partial PDB)

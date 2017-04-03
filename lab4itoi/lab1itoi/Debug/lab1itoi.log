@@ -1,6 +1,8 @@
-﻿  lab1itoi.cpp
-lab1itoi.cpp(114): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
-lab1itoi.cpp(115): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+﻿  descriptor.cpp
+descriptor.cpp(108): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(109): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+  lab1itoi.cpp
+  Создание кода...
   image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.exe
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.pdb (Partial PDB)

@@ -144,10 +144,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\share\image.h" />
     <ClInclude Include="..\..\share\image_lite.h" />
+    <ClInclude Include="..\..\share\interest_points.h" />
     <ClInclude Include="..\..\share\kernel.h" />
     <ClInclude Include="..\..\share\pyramid.h" />
     <ClInclude Include="descriptor.h" />
-    <ClInclude Include="interest_points.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
@@ -157,11 +157,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\share\image.cpp" />
     <ClCompile Include="..\..\share\image_lite.cpp" />
+    <ClCompile Include="..\..\share\interest_points.cpp" />
     <ClCompile Include="..\..\share\kernel.cpp" />
     <ClCompile Include="..\..\share\pyramid.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="descriptor.cpp" />
-    <ClCompile Include="interest_points.cpp" />
     <ClCompile Include="lab1itoi.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

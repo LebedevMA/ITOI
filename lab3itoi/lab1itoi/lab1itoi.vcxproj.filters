@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\share\pyramid.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="interest_points.h">
+    <ClInclude Include="..\..\share\interest_points.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,7 +67,7 @@
     <ClCompile Include="..\..\share\pyramid.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="interest_points.cpp">
+    <ClCompile Include="..\..\share\interest_points.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

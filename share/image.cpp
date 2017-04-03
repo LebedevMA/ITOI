@@ -285,7 +285,7 @@ std::unique_ptr<image> image::Sobel() {
 	return out;
 }
 
-double image::lambda() {
+/*double image::lambda() {
 	kernel Ky = kernel::SobelKy();
 	kernel Kx = kernel::SobelKx();
 	std::unique_ptr<image> Gy = this->convolution(Ky);
@@ -298,6 +298,22 @@ double image::lambda() {
 		B += x*y;
 		C += y*y;
 
+	}
+	double descr = sqrt(pow(A - C, 2) + 4 * B*B);
+	double l = min(abs((A + C - descr) / 2), abs((A + C + descr) / 2));
+	return l;
+}*/
+
+double image::lambda(const image &Gx, const image &Gy, int x0, int y0, int width, int height) {
+	double A = 0, B = 0, C = 0;
+	for (int x = x0;x < x0 + width;x++) {
+		for (int y = y0;y < y0 + height;y++){
+			double a = Gx.getPixel(x, y);
+			double b = Gy.getPixel(x, y);
+			A += a*a;
+			B += a*b;
+			C += b*b;
+		}
 	}
 	double descr = sqrt(pow(A - C, 2) + 4 * B*B);
 	double l = min(abs((A + C - descr) / 2), abs((A + C + descr) / 2));

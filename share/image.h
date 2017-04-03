@@ -29,12 +29,12 @@ public:
 
 	void Normalize();
 
-	const int getWidth() { return width; }
+	int getWidth() const { return width; }
 	void setWidth(int width) { this->width = width; }
-	const int getHeight() { return height; }
+	int getHeight() const { return height; }
 	void setHeight(int height) { this->height = height; }
 
-	double getElement(int index) { return V[index]; }
+	double getElement(int index) const{ return V[index]; }
 	void setElement(int index, double value) { V[index] = value; }
 
 	effect getKE() { return KE; }
@@ -47,7 +47,9 @@ public:
 	std::unique_ptr<image> convolution(const kernel &k) const;
 
 	std::unique_ptr<image> Sobel();
-	double lambda();
+	//double lambda();
+
+	static double lambda(const image &Gx, const image &Gy, int x0, int y0, int width, int height);
 
 	std::unique_ptr<image> small2();
 
