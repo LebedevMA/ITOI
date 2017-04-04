@@ -21,7 +21,7 @@ int main(array<System::String ^> ^args)
 	
 	interest_points IP;
 
-	IP.Harris(*img, 100, 2, 8);
+	IP.Harris(*img, 100, 2);
 
 
 	System::Drawing::Bitmap ^img1 = gcnew System::Drawing::Bitmap(img->getWidth(),img->getHeight());
@@ -44,7 +44,7 @@ int main(array<System::String ^> ^args)
 
 	interest_points IP2;
 
-	IP2.Moravek(*img, 100, 2, 8);
+	IP2.Moravek(*img, 100, 2);
 
 	System::Drawing::Bitmap ^img2 = gcnew System::Drawing::Bitmap(img->getWidth(), img->getHeight());
 	//img->draw(g);

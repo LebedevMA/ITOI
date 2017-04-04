@@ -9,7 +9,7 @@ interest_points::interest_points()
 {
 }
 
-void interest_points::Moravek(const image &img, int N, int r, int p, double T) {
+void interest_points::Moravek(const image &img, int N, int r, double T) {
 	int width = img.getWidth();
 	int height = img.getHeight();
 	auto S = std::make_unique<double[]>(width*height);
@@ -36,48 +36,27 @@ void interest_points::Moravek(const image &img, int N, int r, int p, double T) {
 				}
 			}
 
-			S[y*width + x] = *(std::min_element(&S1[0], &S1[7]));
+			S[y*width + x] = *(std::min_element(&S1[0], &S1[8]));
 		}
 	}
 
-	auto pts = std::make_unique<point[]>(width*height);
-	while (true) {
+	auto pts = std::make_unique<point[]>((width - 2 * r)*(height - 2 * r));
+	int ptscount = 0;
 
-		int ptscount = 0;
-
-		for (int x = r + p;x < width - r - p;x++) {
-			for (int y = r + p;y < height - r - p;y++) {
-				if (T > 0 && S[x + y*width] < T) continue;
-				bool flag = true;
-				for (int u = -p;u < p;u++) {
-					for (int v = -p;v < p;v++) {
-						if (S[x + y*width] < S[x + u + (y + v)*width]) {
-							flag = false;
-							break;
-						}
-					}
-					if (!flag) break;
-				}
-				if (flag) {
-					point pt(x, y, S[x + y*width]);
-					pts[ptscount++] = pt;
-				}
-			}
+	for (int x = r;x < width - r;x++) {
+		for (int y = r;y < height - r;y++) {
+			point pt(x, y, S[x + y*width]);
+			pts[ptscount++] = pt;
 		}
-
-		if (ptscount <= N) break;
-		p++;
 	}
 
-	//std::sort(&pts[0], &pts[ptscount], ptcmp);
+	std::sort(&pts[0], &pts[ptscount], ptcmp);
 
-	for (int i = 0;i < N;i++) {
-		points.push_back(pts[i]);
-	}
+	Filtration(pts, ptscount/2, N);
 }
 
 
-void interest_points::Harris(const image &img1, int N, int r, int p, double T) {
+void interest_points::Harris(const image &img1, int N, int r, double T) {
 
 	kernel Ky = kernel::SobelKy();
 	kernel Kx = kernel::SobelKx();
@@ -86,7 +65,7 @@ void interest_points::Harris(const image &img1, int N, int r, int p, double T) {
 
 	int width = img1.getWidth();
 	int height = img1.getHeight();
-	double *S = new double[width*height];
+	auto S = std::make_unique<double[]>(width*height);
 
 	for (int x = r;x < width - r;x++) {
 		for (int y = r;y < height - r;y++) {
@@ -96,39 +75,65 @@ void interest_points::Harris(const image &img1, int N, int r, int p, double T) {
 		}
 	}
 
-	auto pts = std::make_unique<point[]>(width*height);
-	while (true) {
+	auto pts = std::make_unique<point[]>((width-2*r)*(height-2*r));
+	int ptscount = 0;
 
-		int ptscount = 0;
-
-		for (int x = r + p;x < width - r - p;x++) {
-			for (int y = r + p;y < height - r - p;y++) {
-				if (T > 0 && S[x + y*width] < T) continue;
-				bool flag = true;
-				for (int u = -p;u < p;u++) {
-					for (int v = -p;v < p;v++) {
-						if (S[x + y*width] < S[x + u + (y + v)*width]) {
-							flag = false;
-							break;
-						}
-					}
-					if (!flag) break;
-				}
-				if (flag) {
-					point pt(x, y, S[x + y*width]);
-					pts[ptscount++] = pt;
-				}
-			}
+	for (int x = r;x < width - r;x++) {
+		for (int y = r;y < height - r;y++) {
+				point pt(x, y, S[x + y*width]);
+				pts[ptscount++] = pt;
 		}
-
-		if (ptscount <= N) break;
-		p++;
 	}
 
-	//std::sort(&pts[0], &pts[ptscount], ptcmp);
+	std::sort(&pts[0], &pts[ptscount], ptcmp);
+
+	Filtration(pts, ptscount/2, N);
+}
+
+void interest_points::Filtration(const std::unique_ptr<point[]>& pts, const int ptscount, const int N)
+{
+
+	auto radiuses = std::make_unique<int[]>(ptscount);
+	int maxradius = 0;
+	for (int i = 0;i < ptscount;i++) {
+		int radius = INT_MAX;
+		for (int j = 0;j < i;j++) {
+			int x0 = pts[j].x - pts[i].x;
+			int y0 = pts[j].y - pts[i].y;
+			int radius1 = (int)sqrt(x0*x0 + y0*y0);
+			if (radius1 < radius) {
+				radius = radius1;
+			}
+		}
+		radiuses[i] = radius;
+		if (i > 0 && radius > maxradius) maxradius = radius;
+	}
+	radiuses[0] = maxradius + 1;
+
+	auto flags = std::make_unique<bool[]>(ptscount);
+	for (int i = 0;i < ptscount;i++) {
+		flags[i] = false;
+	}
+
+	auto pts1 = std::make_unique<point[]>(N);
+	int ptscount1 = 1;
+	int radius = maxradius;
+	pts1[0] = pts[0];
+	flags[0] = true;
+	while (ptscount1 < N) {
+		for (int i = 0;i < ptscount;i++) {
+			if (flags[i]) continue;
+			if (radiuses[i] >= radius) {
+				pts1[ptscount1++] = pts[i];
+				flags[i] = true;
+			}
+			if (ptscount1 >= N) break;
+		}
+		radius--;
+	}
 
 	for (int i = 0;i < N;i++) {
-		points.push_back(pts[i]);
+		points.push_back(pts1[i]);
 	}
 }
 

@@ -30,8 +30,10 @@ public:
 	point getPoint(int index) const { return points[index]; };
 	int getCount() const { return points.size(); }
 
-	void Moravek(const image &img, int N, int r, int p, double T = 0);
-	void Harris(const image &img, int N, int r, int p, double T = 0);
+	void Moravek(const image &img, int N, int r, double T = 0);
+	void Harris(const image &img, int N, int r, double T = 0);
+
+	void Filtration(const std::unique_ptr<point[]> &pts, const int ptscount, const int N);
 
 	static bool ptcmp(const point &a, const point &b) {
 		return (a.s > b.s);
