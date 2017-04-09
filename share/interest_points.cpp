@@ -13,6 +13,7 @@ void interest_points::Moravek(const image &img, int N, int r, double T) {
 	int width = img.getWidth();
 	int height = img.getHeight();
 	auto S = std::make_unique<double[]>(width*height);
+	double max = 0;
 	for (int x = r;x < width -r;x++) {
 		for (int y = r;y < height - r;y++) {
 			double S1[] = {0,0,0,0,0,0,0,0};
@@ -37,22 +38,28 @@ void interest_points::Moravek(const image &img, int N, int r, double T) {
 			}
 
 			S[y*width + x] = *(std::min_element(&S1[0], &S1[8]));
+			if (S[y*width + x] > max) max = S[y*width + x];
+		}
+	}
+	/*
+	for (int i = 0;i < width*height;i++) {
+		S[i] /= max;
+	} */
+
+	std::vector<point> pts;
+
+	for (int x = r;x < width - r;x+=2) {
+		for (int y = r;y < height - r;y+=2) {
+			if (S[x + y*width] >= T) {
+				point pt(x, y, S[x + y*width]);
+				pts.push_back(pt);
+			}
 		}
 	}
 
-	auto pts = std::make_unique<point[]>((width - 2 * r)*(height - 2 * r));
-	int ptscount = 0;
+	std::sort(pts.begin(), pts.end(), [](auto &a, auto &b) { return a.s > b.s; });
 
-	for (int x = r;x < width - r;x++) {
-		for (int y = r;y < height - r;y++) {
-			point pt(x, y, S[x + y*width]);
-			pts[ptscount++] = pt;
-		}
-	}
-
-	std::sort(&pts[0], &pts[ptscount], ptcmp);
-
-	Filtration(pts, ptscount/2, N);
+	Filtration(pts, pts.size() / 2, N);
 }
 
 
@@ -75,24 +82,24 @@ void interest_points::Harris(const image &img1, int N, int r, double T) {
 		}
 	}
 
-	auto pts = std::make_unique<point[]>((width-2*r)*(height-2*r));
-	int ptscount = 0;
+	std::vector<point> pts;
 
-	for (int x = r;x < width - r;x++) {
-		for (int y = r;y < height - r;y++) {
+	for (int x = r;x < width - r;x+=2) {
+		for (int y = r;y < height - r;y+=2) {
+			if (S[x + y*width] >= T) {
 				point pt(x, y, S[x + y*width]);
-				pts[ptscount++] = pt;
+				pts.push_back(pt);
+			}
 		}
 	}
+	
+	std::sort(pts.begin(), pts.end(), [](auto &a, auto &b) { return a.s > b.s; });
 
-	std::sort(&pts[0], &pts[ptscount], ptcmp);
-
-	Filtration(pts, ptscount/2, N);
+	Filtration(pts, pts.size()/2, N);
 }
 
-void interest_points::Filtration(const std::unique_ptr<point[]>& pts, const int ptscount, const int N)
+void interest_points::Filtration(const std::vector<point>& pts, int ptscount, const int N)
 {
-
 	auto radiuses = std::make_unique<int[]>(ptscount);
 	int maxradius = 0;
 	for (int i = 0;i < ptscount;i++) {

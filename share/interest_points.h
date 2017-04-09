@@ -33,7 +33,7 @@ public:
 	void Moravek(const image &img, int N, int r, double T = 0);
 	void Harris(const image &img, int N, int r, double T = 0);
 
-	void Filtration(const std::unique_ptr<point[]> &pts, const int ptscount, const int N);
+	void Filtration(const std::vector<point> &pts, const int ptscount, const int N);
 
 	static bool ptcmp(const point &a, const point &b) {
 		return (a.s > b.s);

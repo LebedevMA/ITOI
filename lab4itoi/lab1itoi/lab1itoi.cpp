@@ -32,7 +32,7 @@ int main(array<System::String ^> ^args)
 	int N = 12;
 
 	interest_points IP;
-	IP.Moravek(*img1, N, 4, 8);
+	IP.Moravek(*img1, N, 4, 0.02);
 	System::Drawing::Bitmap ^bmp1 = gcnew System::Drawing::Bitmap(img1->getWidth(), img1->getHeight());
 	System::Drawing::Graphics ^g1 = System::Drawing::Graphics::FromImage(bmp1);
 	img1->draw(g1);
@@ -44,7 +44,7 @@ int main(array<System::String ^> ^args)
 	g->DrawImage(bmp1, 0, 0);
 
 	interest_points IP2;
-	IP2.Moravek(*img2, N, 4, 8);
+	IP2.Moravek(*img2, N, 4, 0.02);
 	System::Drawing::Bitmap ^bmp2 = gcnew System::Drawing::Bitmap(img2->getWidth(), img2->getHeight());
 	System::Drawing::Graphics ^g2 = System::Drawing::Graphics::FromImage(bmp2);
 	img2->draw(g2);
@@ -55,7 +55,7 @@ int main(array<System::String ^> ^args)
 	//bmp2->Save("img2.png");
 	g->DrawImage(bmp2, bmp1->Width, 0);
 
-	auto result = descriptor::Connect(IP, IP2, *grad1, *grad2, N, 16);
+	auto result = descriptor::Connect(IP, IP2, *grad1, *grad2, N, 4);
 
 System::Drawing::Pen ^pen1 = gcnew System::Drawing::Pen(System::Drawing::Color::Red);
 	for (int i = 0;i < N;i++) {

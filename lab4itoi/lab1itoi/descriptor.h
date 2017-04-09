@@ -8,6 +8,7 @@ class descriptor
 	double *V;
 	int size;
 
+public:
 	struct line {
 		int a, b;
 		interest_points::point ptA, ptB;
@@ -35,7 +36,7 @@ public:
 	double getElement(const int index) { return V[index]; };
 	int getSize() { return size; }
 
-	static std::unique_ptr<descriptor> FromPoint(const image &img,const interest_points::point &pt, const int R);
+	static std::unique_ptr<descriptor> FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int N);
 
 	static double Distance(const std::unique_ptr<descriptor> &a, const std::unique_ptr<descriptor> &b);
 

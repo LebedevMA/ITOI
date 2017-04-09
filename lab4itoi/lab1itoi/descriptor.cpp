@@ -26,34 +26,31 @@ void descriptor::operator=(descriptor &a)
 	}
 }
 
-std::unique_ptr<descriptor> descriptor::FromPoint(const image &img, const interest_points::point &pt, const int R) {
+std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int N) {
 	std::unique_ptr<descriptor> res = std::make_unique<descriptor>();
-	res->V = new double[R];
-	res->size = R;
-	int *count = new int[R];
-	for (int i = 0;i < R;i++) {
-		res->V[i] = 0;
-		count[i] = 0;
-	}
+	res->V = new double[N];
+
+	
+	double max = 0;
 
 	for (int i = -R+1;i < R;i++) {
 		for (int j = -R+1;j < R;j++) {
 			int x = i + pt.x;
 			int y = j + pt.y;
-			int d = (int)(sqrt(i*i+j*j));
-			if (d >= R) continue;
-			res->V[d] += img.getPixel(x, y);
-			count[d]++;
+			double x1 = Gx.getPixel(x, y);
+			double y1 = Gy.getPixel(x, y);
+			double phi = atan(y1 / x1);
+			double r1 = sqrt(x1*x1 + y1*y1);
+			int idx = (1.571+phi)*N / 3.142;
+			res->V[idx] += r1;
+			if (r1 > max) max = r1;
 		}
 	}
-	double weight = 1;
-	for (int i = 0;i < R;i++) {
-		if (count[i] == 0) continue;
-		res->V[i] /= count[i];
-		res->V[i] *= weight;
-		weight *= 1.2;
+	if (max > 0) {
+		for (int i = 0;i < N;i++) {
+			res->V[i] /= max;
+		}
 	}
-	delete count;
 	return res;
 }
 
@@ -71,9 +68,14 @@ std::unique_ptr<descriptor::line[]> descriptor::Connect(const interest_points & 
 	auto D1 = std::make_unique < std::unique_ptr<descriptor>[]>(N);
 	auto D2 = std::make_unique < std::unique_ptr<descriptor>[]>(N);
 
+	auto Gx1 = grad1.convolution(kernel::SobelKx());
+	auto Gy1 = grad1.convolution(kernel::SobelKy());
+	auto Gx2 = grad2.convolution(kernel::SobelKx());
+	auto Gy2 = grad2.convolution(kernel::SobelKy());
+
 	for (int i = 0;i < N;i++) {
-		D1[i] = descriptor::FromPoint(grad1, IP.getPoint(i), R);
-		D2[i] = descriptor::FromPoint(grad2, IP2.getPoint(i), R);
+		D1[i] = descriptor::FromPoint(*Gx1, *Gy1, IP.getPoint(i), R, R);
+		D2[i] = descriptor::FromPoint(*Gx2, *Gy2, IP2.getPoint(i), R, R);
 	}
 
 	auto lines = std::make_unique < line[]>(N*N);
