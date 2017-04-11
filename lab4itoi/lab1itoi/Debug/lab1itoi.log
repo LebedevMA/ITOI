@@ -1,7 +1,7 @@
 ﻿  descriptor.cpp
-descriptor.cpp(44): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-descriptor.cpp(110): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
-descriptor.cpp(111): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(54): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(123): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(124): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
   image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.exe
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.pdb (Partial PDB)
