@@ -55,7 +55,10 @@ int main(array<System::String ^> ^args)
 	//bmp2->Save("img2.png");
 	g->DrawImage(bmp2, bmp1->Width, 0);
 
-	auto result = descriptor::Connect(IP, IP2, *grad1, *grad2, N, 4);
+	auto D1 = descriptor::GetDescriptors(IP, *grad1, N, 4);
+	auto D2 = descriptor::GetDescriptors(IP2, *grad2, N, 4);
+
+	auto result = descriptor::Connect(IP, IP2, D1, D2, N);
 
 System::Drawing::Pen ^pen1 = gcnew System::Drawing::Pen(System::Drawing::Color::Red);
 	for (int i = 0;i < N;i++) {

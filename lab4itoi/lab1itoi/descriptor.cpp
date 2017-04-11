@@ -12,7 +12,7 @@ descriptor::descriptor(descriptor &a)
 {
 	size = a.size;
 	if (size > 0) {
-		V = new Gradient[a.size];
+		V = new double[a.size];
 		for (int i = 0;i < a.size;i++) {
 			V[i] = a.V[i];
 		}
@@ -26,7 +26,7 @@ void descriptor::operator=(descriptor &a)
 {
 	size = a.size;
 	if (size > 0) {
-		V = new Gradient[a.size];
+		V = new double[a.size];
 		for (int i = 0;i < a.size;i++) {
 			V[i] = a.V[i];
 		}
@@ -36,12 +36,14 @@ void descriptor::operator=(descriptor &a)
 	}
 }
 
-std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int N){
+descriptor &descriptor::FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int NumberOfFrames, const int NumberOfBaskets){
 	auto res = std::make_unique<descriptor>();
-	res->V = new Gradient[N];
-	res->size = N;
+	res->V = new double[NumberOfFrames*NumberOfBaskets];
+	res->size = NumberOfBaskets*NumberOfFrames;
 
-	double max = 0;
+	int WindowWidth = 2 * R;
+	int WindowHeight = 2 * R;
+	int SizeOfWindow = WindowHeight * WindowWidth;
 
 	for (int i = -R+1;i < R;i++) {
 		for (int j = -R+1;j < R;j++) {
@@ -49,55 +51,65 @@ std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &
 			int y = j + pt.y;
 			double x1 = Gx.getPixel(x, y);
 			double y1 = Gy.getPixel(x, y);
-			double phi = atan(y1 / x1);
-			double r1 = sqrt(x1*x1 + y1*y1);
-			int idx = (1.571+phi)*8 / 3.142;
-			int idx2 = N*((R+i) * 2 * R + (R+j)) / (4 * R*R);
-			res->V[idx2].V[idx] += r1;
-			if (r1 > max) max = r1;
-		}
-	}
-	if (max > 0) {
-		for (int i = 0;i < N;i++) {
-			for (int j = 0;j < 8;j++) {
-				res->V[i].V[j] /= max;
+			double phi;
+			if (x1 != 0) {
+				phi = atan(y1 / x1);
 			}
+			else {
+				if (y1 < 0) phi = -1.571;
+				else phi = 1.571;
+			}
+			double r1 = sqrt(x1*x1 + y1*y1);
+			int idx = (1.571+phi)*(NumberOfBaskets - 1) / 3.142;
+			int idx2 = (NumberOfFrames - 1)*((R+i) * WindowHeight + (R+j)) / (double)SizeOfWindow;
+			res->V[idx2*NumberOfBaskets+idx] += r1;
+			if (idx > 0) res->V[idx2*NumberOfBaskets + idx - 1] += 0.5*r1;
+			if (idx < (NumberOfBaskets-1)) res->V[idx2*NumberOfBaskets + idx + 1] += 0.5*r1;
 		}
 	}
-	return res;
+	
+	double max = 0;
+	for (int i = 0;i < res->size;i++) {
+		if (res->V[i] > max) max = res->V[i];
+	}
+	for (int i = 0;i < res->size;i++) {
+		res->V[i] /= max;
+	}
+
+	return *res;
 }
 
 double descriptor::Distance(const descriptor &a, const descriptor &b) {
 	double res = 0;
 	for (int i = 0;i < a.size && i < b.size;i++) {
-		double d = Gradient::Distance(a.V[i], b.V[i]);
+		double d = a.V[i] - b.V[i];
 		res += d*d;
 	}
+	res = sqrt(res);
 	return res;
 }
 
-std::unique_ptr<descriptor::line[]> descriptor::Connect(const interest_points & IP, const interest_points & IP2, const image & grad1, const image & grad2, int N, int R)
-{
-	auto D1 = std::make_unique < std::unique_ptr<descriptor>[]>(N);
-	auto D2 = std::make_unique < std::unique_ptr<descriptor>[]>(N);
-
+std::unique_ptr<descriptor[]> descriptor::GetDescriptors(const interest_points &IP, const image &grad1, int N, int R) {
+	auto D1 = std::make_unique < descriptor[]>(N);
 	auto Gx1 = grad1.convolution(kernel::SobelKx());
 	auto Gy1 = grad1.convolution(kernel::SobelKy());
-	auto Gx2 = grad2.convolution(kernel::SobelKx());
-	auto Gy2 = grad2.convolution(kernel::SobelKy());
 
 	for (int i = 0;i < N;i++) {
-		D1[i] = descriptor::FromPoint(*Gx1, *Gy1, IP.getPoint(i), R, R/2);
-		D2[i] = descriptor::FromPoint(*Gx2, *Gy2, IP2.getPoint(i), R, R/2);
+		D1[i] = descriptor::FromPoint(*Gx1, *Gy1, IP.getPoint(i), R, R / 2, 8);
 	}
 
+	return D1;
+}
+
+std::unique_ptr<descriptor::line[]> descriptor::Connect(const interest_points &IP, const interest_points &IP2, std::unique_ptr<descriptor[]> & D1, std::unique_ptr<descriptor[]> & D2, int N)
+{
 	auto lines = std::make_unique < line[]>(N*N);
 
 	for (int i = 0;i < N;i++) {
 		interest_points::point a = IP.getPoint(i);
 		for (int j = 0;j < N;j++) {
 			interest_points::point b = IP2.getPoint(j);
-			double d = descriptor::Distance(*D1[i], *D2[j]);
+			double d = descriptor::Distance(D1[i], D2[j]);
 			lines[i*N + j] = line(i, j, d, a, b);
 		}
 	}
