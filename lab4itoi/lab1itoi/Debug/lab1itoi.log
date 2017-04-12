@@ -1,3 +1,15 @@
-﻿  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+﻿  descriptor.cpp
+descriptor.cpp(22): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(33): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(41): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(74): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(84): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(85): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(101): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(152): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(153): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+  lab1itoi.cpp
+  Создание кода...
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.exe
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab4itoi\Debug\lab1itoi.pdb (Partial PDB)

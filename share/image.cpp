@@ -116,7 +116,6 @@ void image::draw(System::Drawing::Graphics ^g) {
 			bmp->SetPixel(x, y, System::Drawing::Color::FromArgb((int)255 * c, (int)255 * c, (int)255 * c));
 		}
 	}
-
 	g->DrawImage(bmp, 0, 0, width, height);
 }
 
