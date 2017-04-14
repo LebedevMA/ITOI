@@ -1,16 +1,43 @@
-﻿  descriptor.cpp
+﻿  image.cpp
+..\..\share\image.cpp(84): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\image.cpp(98): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\image.cpp(116): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\image.cpp(130): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\image.cpp(297): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+..\..\share\image.cpp(346): warning C4244: аргумент: преобразование "double" в "const int", возможна потеря данных
+  image_lite.cpp
+  interest_points.cpp
+..\..\share\interest_points.cpp(123): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(124): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(126): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(137): warning C4018: <: несоответствие типов со знаком и без знака
+  pyramid.cpp
+..\..\share\pyramid.cpp(29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(36): warning C4018: <: несоответствие типов со знаком и без знака
+..\..\share\pyramid.cpp(44): warning C4018: <: несоответствие типов со знаком и без знака
+..\..\share\pyramid.cpp(46): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(47): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(48): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+  descriptor.cpp
 descriptor.cpp(22): warning C4018: <: несоответствие типов со знаком и без знака
 descriptor.cpp(33): warning C4018: <: несоответствие типов со знаком и без знака
 descriptor.cpp(41): warning C4018: <: несоответствие типов со знаком и без знака
-descriptor.cpp(76): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-descriptor.cpp(115): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-descriptor.cpp(116): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-descriptor.cpp(132): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-descriptor.cpp(142): warning C4018: >: несоответствие типов со знаком и без знака
-descriptor.cpp(143): warning C4018: >: несоответствие типов со знаком и без знака
-descriptor.cpp(159): warning C4018: <: несоответствие типов со знаком и без знака
-descriptor.cpp(210): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
-descriptor.cpp(211): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(77): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(138): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(142): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(143): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(145): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(146): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(154): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(155): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(171): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(214): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(215): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(216): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+  lab1itoi.cpp
+lab1itoi.cpp(57): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
+c:\users\admin\documents\github\itoi\share\image.cpp(246): warning C4715: image::getPixel: значение возвращается не при всех путях выполнения
   image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab5itoi\Debug\lab1itoi.exe
   lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab5itoi\Debug\lab1itoi.pdb (Partial PDB)

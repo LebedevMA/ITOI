@@ -26,6 +26,7 @@ public:
 	void save(System::String ^filename);
 	void draw();
 	void draw(System::Drawing::Graphics ^g);
+	void draw(System::Drawing::Graphics ^g, float x0, float y0);
 
 	void Normalize();
 
@@ -50,6 +51,8 @@ public:
 	//double lambda();
 
 	static double lambda(const image &Gx, const image &Gy, int x0, int y0, int width, int height);
+
+	static std::unique_ptr<image> Difference(const image &a, const image &b, int width, int height);
 
 	std::unique_ptr<image> small2();
 

@@ -1,0 +1,41 @@
+﻿  interest_points.cpp
+..\..\share\interest_points.cpp(123): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(124): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(126): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\interest_points.cpp(137): warning C4018: <: несоответствие типов со знаком и без знака
+  pyramid.cpp
+..\..\share\pyramid.cpp(29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(36): warning C4018: <: несоответствие типов со знаком и без знака
+..\..\share\pyramid.cpp(44): warning C4018: <: несоответствие типов со знаком и без знака
+..\..\share\pyramid.cpp(46): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(47): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+..\..\share\pyramid.cpp(48): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+  descriptor.cpp
+descriptor.cpp(22): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(33): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(41): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(62): warning C4244: аргумент: преобразование "double" в "const int", возможна потеря данных
+descriptor.cpp(63): warning C4244: аргумент: преобразование "double" в "const int", возможна потеря данных
+descriptor.cpp(77): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(124): warning C4244: аргумент: преобразование "double" в "const int", возможна потеря данных
+descriptor.cpp(125): warning C4244: аргумент: преобразование "double" в "const int", возможна потеря данных
+descriptor.cpp(139): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(143): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(144): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(146): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(147): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(155): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(156): warning C4018: >: несоответствие типов со знаком и без знака
+descriptor.cpp(172): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(222): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(223): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(224): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+  lab1itoi.cpp
+lab1itoi.cpp(36): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+lab1itoi.cpp(44): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+lab1itoi.cpp(47): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+lab1itoi.cpp(58): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab6itoi\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab6itoi\Debug\lab1itoi.pdb (Partial PDB)

@@ -62,7 +62,7 @@ public:
 
 	static std::unique_ptr<std::unique_ptr<descriptor>[]> GetDescriptors(const interest_points &IP, const image &grad1, int N, int R);
 
-	static std::unique_ptr<line[]> Connect(const interest_points &IP, const interest_points &IP2, std::unique_ptr<std::unique_ptr<descriptor>[]> & D1, std::unique_ptr<std::unique_ptr<descriptor>[]> & D2, int N);
+	static std::unique_ptr<std::vector<line>> Connect(const interest_points &IP, const interest_points &IP2, std::unique_ptr<std::unique_ptr<descriptor>[]> & D1, std::unique_ptr<std::unique_ptr<descriptor>[]> & D2, int N, double T);
 
 	descriptor();
 	descriptor(const descriptor &a);

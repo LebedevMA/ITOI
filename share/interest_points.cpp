@@ -98,6 +98,47 @@ void interest_points::Harris(const image &img1, int N, int r, double T) {
 	Filtration(pts, pts.size()/2, N);
 }
 
+void interest_points::SIFT(const image & img, int N, int r, double T)
+{
+	int width = img.getWidth();
+	int height = img.getHeight();
+
+	P.Gen(img, 4);
+
+	std::vector<point> extremum;
+
+	kernel Ky = kernel::SobelKy();
+	kernel Kx = kernel::SobelKx();
+	for (int z = 1;z < P.getCount() - 2;z++) {
+		//if (P.getInfo(z).octave != P.getInfo(z - 1).octave) continue;
+		//if (P.getInfo(z).octave != P.getInfo(z + 2).octave) continue;
+
+		std::unique_ptr<image> Gy = P.getImage(z).convolution(Ky);
+		std::unique_ptr<image> Gx = P.getImage(z).convolution(Kx);
+
+		double scale = P.getScale(z);
+
+		double step = 1.0/scale;
+
+		for (int x = 0;x < width;x+=step) {
+			for (int y = 0;y < height;y+=step) {
+				if (P.isExtremum(x, y, z)) {
+					double lmin = image::lambda(*Gx, *Gy, x*scale, y*scale, r, r);
+					if (lmin < T) continue;
+					extremum.push_back(point(x, y, z, lmin));
+				}
+			}
+		}
+	}
+
+
+	std::sort(extremum.begin(), extremum.end(), [](auto &a, auto &b) { return a.s > b.s; });
+
+	for (int i = 0;i < extremum.size() && i < N;i++) {
+				points.push_back(extremum[i]);
+	}
+}
+
 void interest_points::Filtration(const std::vector<point>& pts, int ptscount, const int N)
 {
 	auto radiuses = std::make_unique<int[]>(ptscount);

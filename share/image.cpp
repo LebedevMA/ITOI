@@ -119,6 +119,20 @@ void image::draw(System::Drawing::Graphics ^g) {
 	g->DrawImage(bmp, 0, 0, width, height);
 }
 
+void image::draw(System::Drawing::Graphics ^ g, float x0, float y0)
+{
+	System::Drawing::Bitmap ^bmp = gcnew System::Drawing::Bitmap(width, height);
+	for (int y = 0;y < height;y++) {
+		for (int x = 0;x < width;x++) {
+			double c = V[x + y*width];
+			if (c < 0) c = 0;
+			if (c > 1) c = 1;
+			bmp->SetPixel(x, y, System::Drawing::Color::FromArgb((int)255 * c, (int)255 * c, (int)255 * c));
+		}
+	}
+	g->DrawImage(bmp, x0, y0, (float)width, (float)height);
+}
+
 void image::Normalize() {
 	double min, max;
 	min = max = V[0];
@@ -137,6 +151,9 @@ void image::setKE(const effect ke) {
 }
 
 double image::getPixel(const int x, const int y) const{
+	if (this == nullptr) return 0;
+	if (this->width == 0) return 0;
+	if (this->height == 0) return 0;
 	if (width == 0 || height == 0) return 0;
 	if (x >= 0 && x < width && y >= 0 && y < height) return V[x + y*width];
 	if (KE == BLACK) return 0;
@@ -317,6 +334,19 @@ double image::lambda(const image &Gx, const image &Gy, int x0, int y0, int width
 	double descr = sqrt(pow(A - C, 2) + 4 * B*B);
 	double l = min(abs((A + C - descr) / 2), abs((A + C + descr) / 2));
 	return l;
+}
+
+std::unique_ptr<image> image::Difference(const image & a, const image & b, int width, int height)
+{
+	double scalea = a.getWidth() / (double)width;
+	double scaleb = b.getWidth() / (double)width;
+	std::unique_ptr<image> out = std::make_unique<image>(width, height);
+	for (int x = 0;x < width;x++) {
+		for (int y = 0;y < height;y++) {
+			out->V[x + y*width] = a.getPixel(x*scalea, y*scalea) - b.getPixel(x*scaleb, y*scaleb);
+		}
+	}
+	return out;
 }
 
 std::unique_ptr<image> image::small2() {
