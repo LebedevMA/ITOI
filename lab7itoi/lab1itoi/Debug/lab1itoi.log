@@ -1,0 +1,8 @@
+﻿  lab1itoi.cpp
+lab1itoi.cpp(35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+lab1itoi.cpp(45): warning C4018: <: несоответствие типов со знаком и без знака
+lab1itoi.cpp(56): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+lab1itoi.cpp(60): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab7itoi\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab7itoi\Debug\lab1itoi.pdb (Partial PDB)

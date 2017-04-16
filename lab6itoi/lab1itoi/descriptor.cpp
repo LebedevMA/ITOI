@@ -190,7 +190,7 @@ std::unique_ptr<std::unique_ptr<descriptor>[]> descriptor::GetDescriptors(intere
 
 	for (int i = 0;i < N;i++) {
 		double scale = IP.P.getScale(IP.getPoint(i).z);
-		D1[i] = descriptor::FromPoint(*Gx[IP.getPoint(i).z], *Gy[IP.getPoint(i).z], IP.getPoint(i), R, R/2, 8, scale);
+		D1[i] = descriptor::FromPoint(*Gx[IP.getPoint(i).z], *Gy[IP.getPoint(i).z], IP.getPoint(i), R, 8, 8, scale);
 	}
 
 	return D1;

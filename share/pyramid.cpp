@@ -19,7 +19,7 @@ void pyramid::Gen(const image &img, const int scales, const double sigma) {
 		sigmaS = sigma;
 		double dsigma = pow(2, 1.0 / scales);
 		std::unique_ptr<image> p1;
-		for (int i = 0;i < scales;i++) {
+		for (int i = 0;i < scales+3;i++) {
 			sigmaS *= dsigma;
 			sigmaR *= dsigma;
 			kernel k1 = kernel::Gauss(sqrt(sigmaS*sigmaS - 1));
@@ -27,8 +27,11 @@ void pyramid::Gen(const image &img, const int scales, const double sigma) {
 			p1 = p1->convolution(k1.rotate());
 			images.push_back(*p1);
 			inform.push_back(info(octave, sigmaS, sigmaR, scale));
+			if (i == scales - 1) {
+				p = p1->small2();
+			}
 		}
-		p = p1->small2();
+		//p = p1->small2();
 		octave++;
 		scale *= 0.5;
 	}
