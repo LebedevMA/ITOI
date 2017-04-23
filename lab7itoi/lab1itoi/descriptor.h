@@ -54,10 +54,9 @@ public:
 	void Normalize();
 	void Clamp(double k);
 
-	static double PointOrientation(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, double scale);
+	static double PointOrientation(const image &Gx, const image &Gy, const interest_points::point &pt, int R, double scale, double sigma0, double sigma1);
 
-	static std::unique_ptr<descriptor> FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int FramesDividor, const int NumberOfBaskets, double scale);
-
+	static std::unique_ptr<descriptor> FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, int R, const int FramesDividor, const int NumberOfBaskets, double scale, double sigma0, double sigma1);
 	static double Distance(const descriptor &a, const descriptor &b);
 
 	static std::unique_ptr<std::unique_ptr<descriptor>[]> GetDescriptors(interest_points &IP, int N, int R);

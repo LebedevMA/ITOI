@@ -23,7 +23,7 @@ int main(array<System::String ^> ^args)
 	System::Drawing::Graphics ^g = System::Drawing::Graphics::FromHwnd(handle);
 	g->Clear(System::Drawing::Color::Black);
 
-	int N = 500;
+	int N = 200;
 
 	interest_points IP;
 	IP.SIFT(*img1, N, 2, 0);
@@ -37,7 +37,7 @@ int main(array<System::String ^> ^args)
 	auto D1 = descriptor::GetDescriptors(IP, N, 4);
 	auto D2 = descriptor::GetDescriptors(IP2, N, 4);
 
-	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.2);
+	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.5);
 
 	g->ResetClip();
 

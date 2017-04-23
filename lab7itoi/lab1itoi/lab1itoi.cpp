@@ -37,7 +37,7 @@ int main(array<System::String ^> ^args)
 	auto D1 = descriptor::GetDescriptors(IP, N, 4);
 	auto D2 = descriptor::GetDescriptors(IP2, N, 4);
 
-	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.2);
+	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.4);
 
 	g->ResetClip();
 

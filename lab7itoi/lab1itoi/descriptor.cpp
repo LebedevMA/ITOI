@@ -43,9 +43,9 @@ void descriptor::Clamp(double k)
 	}
 }
 
-double descriptor::PointOrientation(const image & Gx, const image & Gy, const interest_points::point & pt, const int R, double scale)
+double descriptor::PointOrientation(const image & Gx, const image & Gy, const interest_points::point & pt,  int R, double scale, double sigma0, double sigma1)
 {
-
+	R *= sigma1 / sigma0;
 	int NumberOfBaskets = 36;
 	auto M = std::make_unique<angle[]>(NumberOfBaskets);
 	double step = 6.284 / NumberOfBaskets;
@@ -56,11 +56,11 @@ double descriptor::PointOrientation(const image & Gx, const image & Gy, const in
 		for (int j = -R + 1;j < R;j++) {
 			if (hypot(i, j) >= R) continue;
 
-			int x = i + pt.x;
-			int y = j + pt.y;
+			int x = i + pt.x*scale;
+			int y = j + pt.y*scale;
 
-			double x1 = Gx.getPixel(x*scale, y*scale);
-			double y1 = Gy.getPixel(x*scale, y*scale);
+			double x1 = Gx.getPixel(x, y);
+			double y1 = Gy.getPixel(x, y);
 			double phi = 6.284+atan2(y1, x1);
 			phi = fmod(phi, 6.284);
 
@@ -102,7 +102,8 @@ double descriptor::PointOrientation(const image & Gx, const image & Gy, const in
 	return ex[0].phi;
 }
 
-std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, const int R, const int FramesDividor, const int NumberOfBaskets, double scale){
+std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &Gy, const interest_points::point &pt, int R, const int FramesDividor, const int NumberOfBaskets, double scale, double sigma0, double sigma1){
+	R *= sigma1 / sigma0;
 	auto res = std::make_unique<descriptor>();
 
 	int WindowHeight = 2 * R;
@@ -111,7 +112,7 @@ std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &
 	int FrameHeight = WindowHeight / FramesDividor;
 	int FrameWidth = WindowWidth / FramesDividor;
 
-	double phi0 = PointOrientation(Gx,Gy,pt,R,scale);
+	double phi0 = PointOrientation(Gx,Gy,pt,R,scale,sigma0,sigma1);
 
 	for (int i = 0;i < FramesDividor*FramesDividor*NumberOfBaskets;i++) {
 		res->V.push_back(0);
@@ -121,11 +122,11 @@ std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &
 
 	for (int i = -R+1;i < R;i++) {
 		for (int j = -R+1;j < R;j++) {
-			int x = i + pt.x;
-			int y = j + pt.y;
+			int x = i + pt.x*scale;
+			int y = j + pt.y*scale;
 
-			double x1 = Gx.getPixel(x*scale, y*scale);
-			double y1 = Gy.getPixel(x*scale, y*scale);
+			double x1 = Gx.getPixel(x, y);
+			double y1 = Gy.getPixel(x, y);
 			double phi = 6.284+atan2(y1, x1)-phi0;
 			phi = fmod(phi, 6.284);
 
@@ -167,8 +168,7 @@ std::unique_ptr<descriptor> descriptor::FromPoint(const image &Gx, const image &
 			double weightH2 = (1 - weightHX)*weightHY;
 			double weightH3 = weightHX*(1 - weightHY);
 			double weightH4 = (1 - weightHX)*(1 - weightHY);
-
-
+			
 			int index11 = idxH1*NumberOfBaskets + idx; index11 %= res->V.size();
 			int index12 = idxH1*NumberOfBaskets + idx1; index12 %= res->V.size();
 			int index21 = idxH2*NumberOfBaskets + idx; index21 %= res->V.size();
@@ -219,7 +219,9 @@ std::unique_ptr<std::unique_ptr<descriptor>[]> descriptor::GetDescriptors(intere
 
 	for (int i = 0;i < N;i++) {
 		double scale = IP.P.getScale(IP.getPoint(i).z);
-		D1[i] = descriptor::FromPoint(*Gx[IP.getPoint(i).z], *Gy[IP.getPoint(i).z], IP.getPoint(i), R, 8, 8, scale);
+		double sigma0 = IP.P.getInfo(0).sigma;
+		double sigma1 = IP.P.getInfo(IP.getPoint(i).z).sigma;
+		D1[i] = descriptor::FromPoint(*Gx[IP.getPoint(i).z], *Gy[IP.getPoint(i).z], IP.getPoint(i), R, 8, 8, scale,sigma0,sigma1);
 	}
 
 	return D1;
