@@ -228,7 +228,7 @@ std::unique_ptr<std::unique_ptr<descriptor>[]> descriptor::GetDescriptors(intere
 		Gy[i] = IP.P.getImage(i).convolution(kernel::SobelKy());
 	}
 
-	for (int i = 0;i < N;i++) {
+	for (int i = 0;i < N && i < IP.getCount();i++) {
 		double scale = IP.P.getScale(IP.getPoint(i).z);
 		double sigma0 = IP.P.getInfo(0).sigma;
 		double sigma1 = IP.P.getInfo(IP.getPoint(i).z).sigma;
@@ -242,9 +242,9 @@ std::unique_ptr<std::vector<descriptor::line>> descriptor::Connect(const interes
 {
 	std::vector<line> lines;
 
-	for (int i = 0;i < N;i++) {
+	for (int i = 0;i < IP.getCount();i++) {
 		interest_points::point a = IP.getPoint(i);
-		for (int j = 0;j < N;j++) {
+		for (int j = 0;j < IP2.getCount();j++) {
 			interest_points::point b = IP2.getPoint(j);
 			double d = descriptor::Distance(*D1[i], *D2[j]);
 			if (d > T) continue;
@@ -254,18 +254,18 @@ std::unique_ptr<std::vector<descriptor::line>> descriptor::Connect(const interes
 
 	std::sort(lines.begin(), lines.end(), [](const line &a, const line &b) {return a.d < b.d;});
 
-	auto flags = std::make_unique<double[]>(2 * N);
-	for (int i = 0;i < 2 * N;i++) {
+	auto flags = std::make_unique<double[]>(IP.getCount() + IP2.getCount());
+	for (int i = 0;i < IP.getCount() + IP2.getCount();i++) {
 		flags[i] = true;
 	}
 
 	std::unique_ptr<std::vector<line>> result = std::make_unique<std::vector<line>>();
 
-	for (int i = 0;i < lines.size();i++) {
+	for (int i = 0;i < lines.size() && i < N;i++) {
 		if (flags[lines[i].a] == false) continue;
-		if (flags[N + lines[i].b] == false) continue;
+		if (flags[IP.getCount() + lines[i].b] == false) continue;
 		flags[lines[i].a] = false;
-		flags[N + lines[i].b] = false;
+		flags[IP.getCount() + lines[i].b] = false;
 		result->push_back(lines[i]);
 	}
 

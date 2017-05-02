@@ -1,0 +1,281 @@
+ImageRuntimeVersion: v1.1.4322
+Assembly Gnu, Version=1.0.*, Culture=Инвариантный язык (Инвариантная страна): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class GnuDll.gsl: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Struct GnuDll.gsl+complex: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Double[] dat : Public, HasFieldMarshal
+Class GnuNet.gsl_fft: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface GnuCom.IGsl_fft: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Methods:
+    real_radix2_transform(IntPtr(In), Int32(In), Int32(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class GnuCom.gsl_fft: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    GnuCom.IGsl_fft
+  Methods:
+    real_radix2_transform(IntPtr(In), Int32(In), Int32(In)): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Class GnuDll.gsl_fft: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    real_radix2_transform(IntPtr(In), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Class GnuDllex.gsl_fft: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    max_power_2(Int32(In)): PrivateScope, Public, Static, HideBySig
+    real_radix2_transform(IntPtr(In), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig
+Class GnuNet.gsl_fit: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    linear(Double[], Int32, Double[], Int32, Double&, Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, Static, HideBySig
+    linear_trim(Double[], Int32, Double[], Int32, Double&, Double&, Double&, Double&, Double&, Double&, Int32, Int32): PrivateScope, Public, Static, HideBySig
+Interface GnuCom.IGsl_fit: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Methods:
+    linear(IntPtr(In), Int32(In), IntPtr(In), Int32(In), Int32(In), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class GnuCom.gsl_fit: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    GnuCom.IGsl_fit
+  Methods:
+    linear(IntPtr(In), Int32(In), IntPtr(In), Int32(In), Int32(In), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out)): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Class GnuDll.gsl_fit: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    linear(Double*(Out), Int32(In), Double*(Out), Int32(In), Int32(In), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out), Double*(Out)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Interface GnuNet.IGsl_ran: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Methods:
+    mean1(Double[], Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class GnuNet.gsl_ran: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    GnuNet.IGsl_ran
+  Methods:
+    mean1(Double[], Int32, Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Class GnuDll.gsl_ran: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    mean1(Double*(In), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Class GnuNet.gsl_sf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface GnuCom.IGsl_sf: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Methods:
+    result_smash_e(result_e10&(HasFieldMarshal), result&(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class GnuCom.gsl_sf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    GnuCom.IGsl_sf
+  Methods:
+    result_smash_e(result_e10&(HasFieldMarshal), result&(HasFieldMarshal)): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Class GnuDll.gsl_sf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    result_smash_e(result_e10&(In, Out, HasFieldMarshal), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erfc_e(Double(In), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erfc_e(Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    log_erfc_e(Double(In), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    log_erfc(Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erf_e(Double(In), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sf_erf(Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erf_Z_e(Double(In), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erf_Q_e(Double(In), result&(In, Out, HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sf_erf_Z(Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    erf_Q(Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Struct GnuDll.gsl_sf+result: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Double val : Public
+    Double err : Public
+Struct GnuDll.gsl_sf+result_e10: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Double val : Public
+    Double err : Public
+    Int32 e10 : Public
+Class GnuNet.gsl_stats: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    mean_trim(Double[], Int32, Int32, Int32): PrivateScope, Public, Static, HideBySig
+    mean(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    variance(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    sd_mean_trim(Double[], Int32, Int32, Int32): PrivateScope, Public, Static, HideBySig
+    sd_trim(Double[], Int32, Int32, Int32): PrivateScope, Public, Static, HideBySig
+    sd(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    variance_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    sd_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    absdev(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    skew(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    kurtosis(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    lag1_autocorrelation(Double[], Int32): PrivateScope, Public, Static, HideBySig
+    covariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    variance_m(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    sd_m_trim(Double[], Int32, Int32, Int32, Double): PrivateScope, Public, Static, HideBySig
+    sd_m(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    absdev_m(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    skew_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Static, HideBySig
+    kurtosis_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Static, HideBySig
+    lag1_autocorrelation_m(Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    covariance_m(Double[], Int32, Double[], Int32, Double, Double): PrivateScope, Public, Static, HideBySig
+    wmean(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wvariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wsd(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wvariance_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    wsd_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    wabsdev(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wskew(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wkurtosis(Double[], Int32, Double[], Int32): PrivateScope, Public, Static, HideBySig
+    wvariance_m(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    wsd_m(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    wabsdev_m(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Static, HideBySig
+    wskew_m_sd(Double[], Int32, Double[], Int32, Double, Double): PrivateScope, Public, Static, HideBySig
+    wkurtosis_m_sd(Double[], Int32, Double[], Int32, Double, Double): PrivateScope, Public, Static, HideBySig
+    mean(Double[]): PrivateScope, Public, Static, HideBySig
+    variance(Double[]): PrivateScope, Public, Static, HideBySig
+    sd(Double[]): PrivateScope, Public, Static, HideBySig
+    variance_with_fixed_mean(Double[], Double): PrivateScope, Public, Static, HideBySig
+    sd_with_fixed_mean(Double[], Double): PrivateScope, Public, Static, HideBySig
+    absdev(Double[]): PrivateScope, Public, Static, HideBySig
+    skew(Double[]): PrivateScope, Public, Static, HideBySig
+    kurtosis(Double[]): PrivateScope, Public, Static, HideBySig
+    lag1_autocorrelation(Double[]): PrivateScope, Public, Static, HideBySig
+    covariance(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    variance_m(Double[], Double): PrivateScope, Public, Static, HideBySig
+    sd_m(Double[], Double): PrivateScope, Public, Static, HideBySig
+    absdev_m(Double[], Double): PrivateScope, Public, Static, HideBySig
+    skew_m_sd(Double[], Double, Double): PrivateScope, Public, Static, HideBySig
+    kurtosis_m_sd(Double[], Double, Double): PrivateScope, Public, Static, HideBySig
+    lag1_autocorrelation_m(Double[], Double): PrivateScope, Public, Static, HideBySig
+    covariance_m(Double[], Double[], Double, Double): PrivateScope, Public, Static, HideBySig
+    wmean(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wvariance(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wsd(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wvariance_with_fixed_mean(Double[], Double[], Double): PrivateScope, Public, Static, HideBySig
+    wsd_with_fixed_mean(Double[], Double[], Double): PrivateScope, Public, Static, HideBySig
+    wabsdev(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wskew(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wkurtosis(Double[], Double[]): PrivateScope, Public, Static, HideBySig
+    wvariance_m(Double[], Double[], Double): PrivateScope, Public, Static, HideBySig
+    wsd_m(Double[], Double[], Double): PrivateScope, Public, Static, HideBySig
+    wabsdev_m(Double[], Double[], Double): PrivateScope, Public, Static, HideBySig
+    wskew_m_sd(Double[], Double[], Double, Double): PrivateScope, Public, Static, HideBySig
+    wkurtosis_m_sd(Double[], Double[], Double, Double): PrivateScope, Public, Static, HideBySig
+Interface GnuCom.IGsl_stats: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Methods:
+    mean(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    variance(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    sd(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    variance_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    sd_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    absdev(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    skew(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    kurtosis(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    lag1_autocorrelation(Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    covariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    variance_m(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    sd_m(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    absdev_m(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    skew_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    kurtosis_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    lag1_autocorrelation_m(Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    covariance_m(Double[], Int32, Double[], Int32, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wmean(Double[], Int32, Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wvariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wsd(Double[], Int32, Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wvariance_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wsd_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    wabsdev(Double[], Int32, Double[], Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class GnuCom.gsl_stats: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    GnuCom.IGsl_stats
+  Methods:
+    mean(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    variance(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    sd(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    variance_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    sd_with_fixed_mean(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    absdev(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    skew(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    kurtosis(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    lag1_autocorrelation(Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    covariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    variance_m(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    sd_m(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    absdev_m(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    skew_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    kurtosis_m_sd(Double[], Int32, Double, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    lag1_autocorrelation_m(Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    covariance_m(Double[], Int32, Double[], Int32, Double, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wmean(Double[], Int32, Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wvariance(Double[], Int32, Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wsd(Double[], Int32, Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wvariance_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wsd_with_fixed_mean(Double[], Int32, Double[], Int32, Double): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    wabsdev(Double[], Int32, Double[], Int32): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Class GnuDll.gsl_stats: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    covariance_m(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wmean(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance_with_fixed_mean(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd_with_fixed_mean(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wabsdev(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wskew(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wkurtosis(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance_m(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd_m(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wabsdev_m(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wskew_m_sd(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wkurtosis_m_sd(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wskew(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wkurtosis(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance_m(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd_m(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wabsdev_m(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wskew_m_sd(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wkurtosis_m_sd(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    mean1(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance_with_fixed_mean(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd_with_fixed_mean(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    absdev(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    skew(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    kurtosis(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    lag1_autocorrelation(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    covariance(Double[](In, Out, HasFieldMarshal), Int32(In), Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance_m(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd_m(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    absdev_m(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    skew_m_sd(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    kurtosis_m_sd(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    lag1_autocorrelation_m(Double[](In, Out, HasFieldMarshal), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    mean(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance_with_fixed_mean(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd_with_fixed_mean(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    absdev(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    skew(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    kurtosis(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    lag1_autocorrelation(Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    covariance(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    variance_m(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    sd_m(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    absdev_m(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    skew_m_sd(Double*(In, Out), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    kurtosis_m_sd(Double*(In, Out), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    lag1_autocorrelation_m(Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    covariance_m(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wmean(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wvariance_with_fixed_mean(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wsd_with_fixed_mean(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In), Double(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    wabsdev(Double*(In, Out), Int32(In), Double*(In, Out), Int32(In), Int32(In)): PrivateScope, Public, Static, HideBySig, PinvokeImpl

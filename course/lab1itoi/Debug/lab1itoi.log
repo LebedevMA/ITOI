@@ -1,0 +1,23 @@
+﻿  descriptor.cpp
+descriptor.cpp(30): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(41): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(49): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(56): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(67): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(68): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(85): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(114): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(136): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(137): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(154): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(159): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(160): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(162): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(163): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+descriptor.cpp(212): warning C4018: <: несоответствие типов со знаком и без знака
+descriptor.cpp(254): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(255): warning C4805: ==: небезопасное смешение типа "double" и типа "bool" в операции
+descriptor.cpp(270): warning C4018: <: несоответствие типов со знаком и без знака
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\course\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\course\Debug\lab1itoi.pdb (Partial PDB)

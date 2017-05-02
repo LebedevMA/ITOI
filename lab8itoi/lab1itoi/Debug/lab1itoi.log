@@ -1,0 +1,7 @@
+﻿  lab1itoi.cpp
+lab1itoi.cpp(45): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+lab1itoi.cpp(46): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+lab1itoi.cpp(47): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  image.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab8itoi\Debug\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\lab8itoi\Debug\lab1itoi.pdb (Partial PDB)

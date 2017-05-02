@@ -27,6 +27,7 @@ public:
 	void draw();
 	void draw(System::Drawing::Graphics ^g);
 	void draw(System::Drawing::Graphics ^g, float x0, float y0);
+	System::Drawing::Bitmap ^bitmap();
 
 	void Normalize();
 

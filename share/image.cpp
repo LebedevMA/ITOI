@@ -133,6 +133,21 @@ void image::draw(System::Drawing::Graphics ^ g, float x0, float y0)
 	g->DrawImage(bmp, x0, y0, (float)width, (float)height);
 }
 
+System::Drawing::Bitmap ^image::bitmap()
+{
+
+	System::Drawing::Bitmap ^bmp = gcnew System::Drawing::Bitmap(width, height);
+	for (int y = 0;y < height;y++) {
+		for (int x = 0;x < width;x++) {
+			double c = V[x + y*width];
+			if (c < 0) c = 0;
+			if (c > 1) c = 1;
+			bmp->SetPixel(x, y, System::Drawing::Color::FromArgb((int)255 * c, (int)255 * c, (int)255 * c));
+		}
+	}
+	return bmp;
+}
+
 void image::Normalize() {
 	double min, max;
 	min = max = V[0];

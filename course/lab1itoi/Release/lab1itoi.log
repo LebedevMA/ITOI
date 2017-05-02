@@ -1,0 +1,8 @@
+﻿  hough.cpp
+hough.cpp(15): warning C4018: <: несоответствие типов со знаком и без знака
+hough.cpp(31): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+hough.cpp(32): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+hough.cpp(33): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+hough.cpp(34): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\course\Release\lab1itoi.exe
+  lab1itoi.vcxproj -> C:\Users\Admin\Documents\GitHub\ITOI\course\Release\lab1itoi.pdb (Full PDB)

@@ -12,7 +12,7 @@ public:
 		double angle;
 		double width;
 		double height;
-		double inliners;
+
 		Result() {
 			x = 0;
 			y = 0;
@@ -20,7 +20,6 @@ public:
 			angle = 0;
 			width = 0;
 			height = 0;
-			inliners = 0;
 		}
 		Result(double x, double y, double size, double angle, double width, double height) {
 			this->x = x;
@@ -37,7 +36,6 @@ public:
 			angle = a.angle;
 			width = a.width;
 			height = a.height;
-			inliners = a.inliners;
 		}
 	};
 	hough();

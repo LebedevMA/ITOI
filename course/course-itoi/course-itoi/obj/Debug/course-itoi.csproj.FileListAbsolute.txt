@@ -1,0 +1,10 @@
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\bin\Debug\course-itoi.pdb
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\bin\Debug\lab1itoi.dll
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course-itoi.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course_itoi.Properties.Resources.resources
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course-itoi.csproj.GenerateResource.Cache
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course-itoi.pdb
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course_itoi.Form1.resources
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\bin\Debug\course-itoi.dll.config
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\bin\Debug\course-itoi.dll
+c:\users\admin\documents\visual studio 2015\Projects\course-itoi\course-itoi\obj\Debug\course-itoi.dll

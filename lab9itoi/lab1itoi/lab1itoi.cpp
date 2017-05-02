@@ -41,16 +41,16 @@ int main(array<System::String ^> ^args)
 	double y0 = img1->getHeight() * 0.5;
 
 
-	auto D1 = descriptor::GetDescriptors(IP, N, 4);
+	auto D1 = descriptor::GetDescriptors(IP, N, 10);
 
 	for (int i = 0;i < N;i++) {
 		D1[i]->centerDistance = sqrt((IP.getPoint(i).x - x0)*(IP.getPoint(i).x - x0) + (IP.getPoint(i).y - y0)*(IP.getPoint(i).y - y0));
 		D1[i]->centerAngle = atan2(IP.getPoint(i).y - y0, IP.getPoint(i).x - x0);
 	}
 
-	auto D2 = descriptor::GetDescriptors(IP2, N, 4);
+	auto D2 = descriptor::GetDescriptors(IP2, N, 10);
 
-	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.4);
+	auto result = descriptor::Connect(IP, IP2, D1, D2, N, 0.7);
 
 	g->ResetClip();
 
@@ -74,16 +74,15 @@ int main(array<System::String ^> ^args)
 	g->ResetClip();
 	}
 
-	auto param = hough::Find(*result, img1->getWidth(), img1->getHeight(), 1.2);
+	auto param = hough::Find(*result, img1->getWidth(), img1->getHeight(), 0);
 
-	Console::WriteLine("inliners: " + (param->inliners * 100).ToString("F")+"%");
+	array<System::Drawing::Point> ^points = gcnew array<System::Drawing::Point>(4);
+	points[0] = System::Drawing::Point((float)(param->x + 0.5*param->width * cos(param->angle + 0.00) - 0.5*param->height * sin(param->angle + 0.00) + img1->getWidth()), (float)(param->y + 0.5*param->width * sin(param->angle + 0.00) + 0.5*param->height * cos(param->angle + 0.00)));
+	points[1] = System::Drawing::Point((float)(param->x + 0.5*param->width * cos(param->angle + 1.57) - 0.5*param->height * sin(param->angle + 1.57) + img1->getWidth()), (float)(param->y + 0.5*param->width * sin(param->angle + 1.57) + 0.5*param->height * cos(param->angle + 1.57)));
+	points[2] = System::Drawing::Point((float)(param->x + 0.5*param->width * cos(param->angle + 3.14) - 0.5*param->height * sin(param->angle + 3.14) + img1->getWidth()), (float)(param->y + 0.5*param->width * sin(param->angle + 3.14) + 0.5*param->height * cos(param->angle + 3.14)));
+	points[3] = System::Drawing::Point((float)(param->x + 0.5*param->width * cos(param->angle + 4.72) - 0.5*param->height * sin(param->angle + 4.72) + img1->getWidth()), (float)(param->y + 0.5*param->width * sin(param->angle + 4.72) + 0.5*param->height * cos(param->angle + 4.72)));
 
-	if (param->inliners >= 0.5) {
-
-		g->DrawEllipse(pen, (float)param->x - 0.5*param->width + img1->getWidth(), (float)param->y - 0.5*param->height, (float)param->width, (float)param->height);
-
-		g->DrawLine(pen, (float)(param->x + img1->getWidth()), (float)(param->y), (float)(param->x + 0.5*param->width * cos(param->angle) + img1->getWidth()), (float)(param->y + 0.5*param->height * sin(param->angle)));
-	}
+	g->DrawPolygon(pen, points);
 
 	Console::ReadKey();
 	
